@@ -22,7 +22,8 @@ public class DataService {
             writer.write("LISTA OGGETTI:\n");
 
             // USIAMO IL TUO ITERATOR!
-            // Grazie all'iteratore, scrivere su file è facilissimo perché abbiamo una lista piatta.
+            // Grazie all'iteratore, scrivere su file è facilissimo perché abbiamo una lista
+            // piatta.
             StoreIterator iterator = new StoreIterator(rootCategory.getItems());
 
             while (iterator.hasNext()) {
@@ -36,7 +37,6 @@ public class DataService {
                 writer.write(line + "\n");
             }
 
-            System.out.println("Salvataggio completato con successo nel file: " + filename);
         }
     }
 }
