@@ -1,0 +1,64 @@
+package it.portobello;
+
+import it.portobello.creation.CatalogFactory;
+import it.portobello.exception.CatalogException;
+import it.portobello.iterator.StoreIterator;
+import it.portobello.model.CatalogItem;
+import it.portobello.model.Category;
+import it.portobello.model.Product;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("--- BENVENUTO A PORTOBELLO MANAGER ---");
+
+        try {
+
+            // Mettiamo tutto qui dentro perché ora createProduct può lanciare un errore.
+
+            // 1. Creiamo i prodotti tramite Factory
+            // Prova a cambiare un prezzo a -10 per vedere se scatta l'errore!
+            Product p1 = CatalogFactory.createProduct("Lampada Vintage", "Anni 60", 50.0, "Good");
+            Product p2 = CatalogFactory.createProduct("Sedia Legno", "Fatta a mano", 20.0, "Worn");
+            Product p3 = CatalogFactory.createProduct("iPhone 4", "Da collezione", 100.0, "New");
+
+            // 2. Creiamo le categorie
+            Category rootCategory = CatalogFactory.createCategory("Negozio Portobello");
+            Category arredamento = CatalogFactory.createCategory("Arredamento");
+            Category elettronica = CatalogFactory.createCategory("Elettronica");
+
+            // 3. Composizione
+            arredamento.addItem(p1);
+            arredamento.addItem(p2);
+            elettronica.addItem(p3);
+
+            rootCategory.addItem(arredamento);
+            rootCategory.addItem(elettronica);
+
+            // 4. Output
+            System.out.println("Totale valore magazzino: " + rootCategory.getPrice() + "€");
+            rootCategory.printDetails();
+
+            System.out.println("\n--- STAMPA CON ITERATOR (Lista Piatta)");
+
+            StoreIterator iterator = new StoreIterator(rootCategory.getItems());
+
+            while (iterator.hasNext()){
+                CatalogItem item = iterator.next();
+                System.out.println("-> Trovato; "+ item.getName() + " | Prezzo: " + item.getPrice());
+            }
+
+            System.out.println("\n--- SALVATAGGIO SU FILE ---");
+            // Questo creerà un file "export_catalogo.txt" nella cartella del progetto
+            it.portobello.service.DataService.saveCatalogToFile(rootCategory, "export_catalogo.txt");
+
+        } catch (CatalogException e) {
+            // --- QUI GESTIAMO L'ERRORE SPECIFICO (Exception Shielding) ---
+            // Questo scatta se metti un prezzo negativo o un nome vuoto
+            System.err.println("ERRORE CATALOGO: " + e.getMessage());
+
+        } catch (Exception e) {
+            // --- QUI GESTIAMO IMPREVISTI GENERICI ---
+            System.err.println("ERRORE DI SISTEMA: " + e.getMessage());
+        }
+    }
+}
