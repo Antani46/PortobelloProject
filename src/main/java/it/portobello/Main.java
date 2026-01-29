@@ -6,10 +6,14 @@ import it.portobello.iterator.StoreIterator;
 import it.portobello.model.CatalogItem;
 import it.portobello.model.Category;
 import it.portobello.model.Product;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
-        System.out.println("--- BENVENUTO A PORTOBELLO MANAGER ---");
+        logger.info("--- BENVENUTO A PORTOBELLO MANAGER ---");
 
         try {
 
@@ -35,30 +39,30 @@ public class Main {
             rootCategory.addItem(elettronica);
 
             // 4. Output
-            System.out.println("Totale valore magazzino: " + rootCategory.getPrice() + "€");
+            logger.info("Totale valore magazzino: {}€", rootCategory.getPrice());
             rootCategory.printDetails();
 
-            System.out.println("\n--- STAMPA CON ITERATOR (Lista Piatta)");
+            logger.info("\n--- STAMPA CON ITERATOR (Lista Piatta)");
 
             StoreIterator iterator = new StoreIterator(rootCategory.getItems());
 
-            while (iterator.hasNext()){
+            while (iterator.hasNext()) {
                 CatalogItem item = iterator.next();
-                System.out.println("-> Trovato; "+ item.getName() + " | Prezzo: " + item.getPrice());
+                logger.info("-> Trovato; {} | Prezzo: {}", item.getName(), item.getPrice());
             }
 
-            System.out.println("\n--- SALVATAGGIO SU FILE ---");
+            logger.info("\n--- SALVATAGGIO SU FILE ---");
             // Questo creerà un file "export_catalogo.txt" nella cartella del progetto
             it.portobello.service.DataService.saveCatalogToFile(rootCategory, "export_catalogo.txt");
 
         } catch (CatalogException e) {
             // --- QUI GESTIAMO L'ERRORE SPECIFICO (Exception Shielding) ---
             // Questo scatta se metti un prezzo negativo o un nome vuoto
-            System.err.println("ERRORE CATALOGO: " + e.getMessage());
+            logger.error("ERRORE CATALOGO: {}", e.getMessage());
 
         } catch (Exception e) {
             // --- QUI GESTIAMO IMPREVISTI GENERICI ---
-            System.err.println("ERRORE DI SISTEMA: " + e.getMessage());
+            logger.error("ERRORE DI SISTEMA: {}", e.getMessage());
         }
     }
 }
