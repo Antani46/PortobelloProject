@@ -17,10 +17,7 @@ public class Main {
 
         try {
 
-            // Mettiamo tutto qui dentro perché ora createProduct può lanciare un errore.
-
             // 1. Creiamo i prodotti tramite Factory
-            // Prova a cambiare un prezzo a -10 per vedere se scatta l'errore!
             Product p1 = CatalogFactory.createProduct("Lampada Vintage", "Anni 60", 50.0, "Good");
             Product p2 = CatalogFactory.createProduct("Sedia Legno", "Fatta a mano", 20.0, "Worn");
             Product p3 = CatalogFactory.createProduct("iPhone 4", "Da collezione", 100.0, "New");
@@ -34,7 +31,6 @@ public class Main {
             arredamento.addItem(p1);
             arredamento.addItem(p2);
             elettronica.addItem(p3);
-
             rootCategory.addItem(arredamento);
             rootCategory.addItem(elettronica);
 

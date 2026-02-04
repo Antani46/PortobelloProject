@@ -15,13 +15,13 @@ public class Category implements CatalogItem {
         this.name = name;
         this.items = new ArrayList<>();
     }
-
+    //Metodo per aggiungere l'oggetto
     public void addItem(CatalogItem item) {
         if (item != null) {
             this.items.add(item);
         }
     }
-
+    //Metodo per rimuovere l'oggetto
     public void removeItem(CatalogItem item) {
         this.items.remove(item);
     }

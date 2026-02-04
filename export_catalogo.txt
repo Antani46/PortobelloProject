@@ -1,0 +1,9 @@
+--- PORTOBELLO CATALOG EXPORT ---
+Totale Valore: 170.0€
+
+LISTA OGGETTI:
+TYPE: Category | NAME: Arredamento | PRICE: 70,00€
+TYPE: Product | NAME: Lampada Vintage | PRICE: 50,00€
+TYPE: Product | NAME: Sedia Legno | PRICE: 20,00€
+TYPE: Category | NAME: Elettronica | PRICE: 100,00€
+TYPE: Product | NAME: iPhone 4 | PRICE: 100,00€
