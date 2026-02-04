@@ -61,6 +61,6 @@ The following UML diagrams illustrate the structural design and the execution fl
 This diagram details the **Composite Pattern** implementation. It shows how `Product` and `Category` implement the common interface `CatalogItem`, and how the `CatalogFactory` manages object creation.
 ![Class Diagram](class_diagram.jpg)
 
-### Architectural Flow (Setup vs Output)
+### Architectural Flow
 This flowchart demonstrates the separation between the **Data Preparation Phase** (using Factory and Validation) and the **Output Phase** (using Iterator and Java I/O to generate the report).
 ![Architecture Diagram](architecture_diagram.jpg)
