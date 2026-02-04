@@ -1,7 +1,7 @@
 # Portobello Manager - OOP Final Project
 
 ## Project Overview
-Portobello Manager is a Java CLI (Command Line Interface) application designed to manage a second-hand store inventory.
+Portobello Manager is a Java application designed to manage a second-hand store inventory.
 The system allows users to organize items into a hierarchical structure (categories containing products or sub-categories), calculate the total value of the inventory, and export the full catalog to a text file.
 
 This project was developed as a final assignment to demonstrate proficiency in Object-Oriented Programming, Design Patterns, and core Java technologies.
@@ -27,9 +27,8 @@ The architecture is based on specific Design Patterns to ensure maintainability 
 ## Technologies Used
 * **Java SE 21**: Core language.
 * **Maven**: Dependency management and build automation.
-* **SLF4J / Logback**: Professional logging framework (replacing System.out).
+* **SLF4J / Logback**: Professional logging framework.
 * **JUnit 5**: Unit testing framework.
-* **Java I/O**: For writing reports to disk.
 
 ## Setup and Execution
 To run this project, you need JDK 21 and Maven installed.
@@ -56,4 +55,12 @@ To run this project, you need JDK 21 and Maven installed.
 * **User Interface:** The interaction is currently hardcoded in the Main class for demonstration purposes. A future update could add an interactive CLI menu or a GUI.
 
 ## UML Diagram
-*Placeholder*
+The following UML diagrams illustrate the structural design and the execution flow of the application.
+
+### Class Diagram
+This diagram details the **Composite Pattern** implementation. It shows how `Product` and `Category` implement the common interface `CatalogItem`, and how the `CatalogFactory` manages object creation.
+![Class Diagram](class_diagram.jpg)
+
+### Architectural Flow (Setup vs Output)
+This flowchart demonstrates the separation between the **Data Preparation Phase** (using Factory and Validation) and the **Output Phase** (using Iterator and Java I/O to generate the report).
+![Architecture Diagram](architecture_diagram.jpg)
