@@ -48,17 +48,17 @@ public class Main {
             }
 
             logger.info("\n--- SALVATAGGIO SU FILE ---");
-            // Questo creerà un file "export_catalogo.txt" nella cartella del progetto
+            // Crea file "export_catalogo.txt"
             it.portobello.service.DataService.saveCatalogToFile(rootCategory, "export_catalogo.txt");
             logger.info("Salvataggio completato con successo nel file: export_catalogo.txt");
 
         } catch (CatalogException e) {
-            // --- QUI GESTIAMO L'ERRORE SPECIFICO (Exception Shielding) ---
-            // Questo scatta se metti un prezzo negativo o un nome vuoto
+            // QUI GESTIAMO L'ERRORE SPECIFICO (Exception Shielding)
+
             logger.error("ERRORE CATALOGO: {}", e.getMessage());
 
         } catch (Exception e) {
-            // --- QUI GESTIAMO IMPREVISTI GENERICI ---
+            // QUI GESTIAMO IMPREVISTI GENERICI
             logger.error("ERRORE DI SISTEMA: {}", e.getMessage());
         }
     }

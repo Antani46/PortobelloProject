@@ -12,7 +12,7 @@ import java.util.Stack;
  * Gestisce la navigazione in profondità della struttura gerarchica utilizzando uno Stack.
  */
 public class StoreIterator implements Iterator<CatalogItem> {
-    private Stack<Iterator<CatalogItem>> stack = new Stack<>();
+    private final Stack<Iterator<CatalogItem>> stack = new Stack<>();
 
     public StoreIterator(List<CatalogItem> items) {
         // Inizializza lo stack con l'iteratore del livello radice
@@ -42,8 +42,7 @@ public class StoreIterator implements Iterator<CatalogItem> {
             CatalogItem component = iterator.next();
 
             // Se l'elemento corrente è una categoria, aggiungiamo il suo iteratore allo stack
-            if (component instanceof Category) {
-                Category category = (Category) component;
+            if (component instanceof Category category) { // 'category' è la variabile di pattern
                 stack.push(category.getItems().iterator());
             }
 
