@@ -2,18 +2,23 @@ package it.portobello.model;
 
 import it.portobello.exception.CatalogException; // <--- Importante!
 
+/**
+ * Rappresenta un singolo articolo nel catalogo.
+ * Implementa la validazione degli attributi nel costruttore per garantire l'integrità dei dati.
+ */
 public class Product implements CatalogItem {
-    // ... i campi restano uguali ...
     private final String name;
     private final String description;
     private final double price;
     private final String condition;
 
-    // Aggiungi "throws CatalogException" alla firma
+    /**
+     * Costruttore con validazione dei parametri.
+     * @throws CatalogException se i dati in ingresso non sono validi (es. prezzo negativo).
+     */
     public Product(String name, String description, double price, String condition) throws CatalogException {
         // VALIDAZIONE
         if (name == null || name.trim().isEmpty()) {
-            // Lancia la TUA eccezione
             throw new CatalogException("Error: Product name cannot be empty.");
         }
         if (price < 0) {
@@ -25,8 +30,6 @@ public class Product implements CatalogItem {
         this.price = price;
         this.condition = condition;
     }
-
-    // ... il resto dei metodi rimane uguale ...
     @Override
     public double getPrice() { return this.price; }
     @Override

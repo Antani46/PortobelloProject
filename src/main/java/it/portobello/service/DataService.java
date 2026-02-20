@@ -10,10 +10,9 @@ import java.io.IOException;
 
 public class DataService {
 
-    // Metodo per salvare il catalogo su file (Java I/O - 3 Punti)
+    // Metodo per salvare il catalogo su file
     public static void saveCatalogToFile(Category rootCategory, String filename) throws IOException {
 
-        // Usiamo "try-with-resources" (il try con parentesi tonda).
         // Chiude automaticamente il file alla fine, evitando memory leak (Sicurezza).
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 
@@ -21,9 +20,6 @@ public class DataService {
             writer.write("Totale Valore: " + rootCategory.getPrice() + "€\n\n");
             writer.write("LISTA OGGETTI:\n");
 
-            // USIAMO IL TUO ITERATOR!
-            // Grazie all'iteratore, scrivere su file è facilissimo perché abbiamo una lista
-            // piatta.
             StoreIterator iterator = new StoreIterator(rootCategory.getItems());
 
             while (iterator.hasNext()) {

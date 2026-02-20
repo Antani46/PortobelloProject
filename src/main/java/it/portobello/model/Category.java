@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import it.portobello.exception.CatalogException;
 
+/**
+ * Rappresenta un contenitore di elementi (Pattern Composite).
+ * Può contenere sia oggetti Product che altre istanze di Category.
+ */
 public class Category implements CatalogItem {
     private final String name;
     private final List<CatalogItem> items; // final protegge il riferimento alla lista
@@ -28,6 +32,7 @@ public class Category implements CatalogItem {
 
     @Override
     public double getPrice() {
+        // Calcolo ricorsivo del prezzo totale degli elementi contenuti
         double total = 0;
         for (CatalogItem item : items) {
             total += item.getPrice();
