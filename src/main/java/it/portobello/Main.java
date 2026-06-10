@@ -17,20 +17,16 @@ public class Main {
 
         try {
 
-            // Mettiamo tutto qui dentro perché ora createProduct può lanciare un errore.
-
-            // 1. Creiamo i prodotti tramite Factory
-            // Prova a cambiare un prezzo a -10 per vedere se scatta l'errore!
             Product p1 = CatalogFactory.createProduct("Lampada Vintage", "Anni 60", 50.0, "Good");
             Product p2 = CatalogFactory.createProduct("Sedia Legno", "Fatta a mano", 20.0, "Worn");
             Product p3 = CatalogFactory.createProduct("iPhone 4", "Da collezione", 100.0, "New");
 
-            // 2. Creiamo le categorie
+            // Creiamo le categorie
             Category rootCategory = CatalogFactory.createCategory("Negozio Portobello");
             Category arredamento = CatalogFactory.createCategory("Arredamento");
             Category elettronica = CatalogFactory.createCategory("Elettronica");
 
-            // 3. Composizione
+            // Composizione
             arredamento.addItem(p1);
             arredamento.addItem(p2);
             elettronica.addItem(p3);
@@ -38,7 +34,6 @@ public class Main {
             rootCategory.addItem(arredamento);
             rootCategory.addItem(elettronica);
 
-            // 4. Output
             logger.info("Totale valore magazzino: {}€", rootCategory.getPrice());
             rootCategory.printDetails();
 
@@ -52,17 +47,13 @@ public class Main {
             }
 
             logger.info("\n--- SALVATAGGIO SU FILE ---");
-            // Questo creerà un file "export_catalogo.txt" nella cartella del progetto
             it.portobello.service.DataService.saveCatalogToFile(rootCategory, "export_catalogo.txt");
             logger.info("Salvataggio completato con successo nel file: export_catalogo.txt");
 
         } catch (CatalogException e) {
-            // --- QUI GESTIAMO L'ERRORE SPECIFICO (Exception Shielding) ---
-            // Questo scatta se metti un prezzo negativo o un nome vuoto
             logger.error("ERRORE CATALOGO: {}", e.getMessage());
 
         } catch (Exception e) {
-            // --- QUI GESTIAMO IMPREVISTI GENERICI ---
             logger.error("ERRORE DI SISTEMA: {}", e.getMessage());
         }
     }

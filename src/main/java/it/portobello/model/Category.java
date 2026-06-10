@@ -6,7 +6,7 @@ import it.portobello.exception.CatalogException;
 
 public class Category implements CatalogItem {
     private final String name;
-    private final List<CatalogItem> items; // final protegge il riferimento alla lista
+    private final List<CatalogItem> items;
 
     public Category(String name) throws CatalogException {
         if (name == null || name.trim().isEmpty()) {
