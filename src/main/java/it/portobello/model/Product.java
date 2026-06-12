@@ -29,6 +29,6 @@ public class Product implements CatalogItem {
     public String getName() { return this.name; }
     @Override
     public void printDetails() {
-        System.out.println("  - Product: " + name + " (" + description + ") | Price: " + price + "€ | Cond: " + condition);
+        System.out.println("  - Product: " + name + " " + description + " | Price: " + price + "€ | Cond: " + condition);
     }
 }
